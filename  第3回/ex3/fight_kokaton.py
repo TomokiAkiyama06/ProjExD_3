@@ -171,8 +171,15 @@ def main():
                 pg.display.update()
                 time.sleep(1)
                 beam = None
-                bombs[i] = None
-        bombs = [bomb for bomb in bombs if bomb is not None]
+                bomb = None
+                return
+
+        if bomb is not None and bird.rct.colliderect(bomb.rct):
+            # ゲームオーバー時に，こうかとん画像を切り替え，1秒間表示させる
+            bird.change_img(8, screen)
+            pg.display.update()
+            time.sleep(1)
+            return
 
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
